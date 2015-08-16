@@ -7,7 +7,7 @@ var nunjucks = require('nunjucks');
 var consolidate = require("consolidate");
 var path = require('canonical-path');
 var exroute = require('exroute');
-var passport = require('./lib/passport');
+var passport = require('./lib/passport').Passport;
 
 var app = express();
 // view engine setup
