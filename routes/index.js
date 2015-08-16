@@ -6,7 +6,9 @@ function getIndex(req, res, next){
 }
 
 function getDashboard(req, res, next){
-    res.render('pages/dashboard');
+    res.render('pages/dashboard',{
+        user:req.session.passport.user
+    });
 }
 
 module.exports = function () {

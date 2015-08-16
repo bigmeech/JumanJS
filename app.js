@@ -7,6 +7,7 @@ var nunjucks = require('nunjucks');
 var consolidate = require("consolidate");
 var path = require('canonical-path');
 var exroute = require('exroute');
+var session = require('express-session');
 var passport = require('./lib/passport').Passport;
 
 var app = express();
@@ -22,8 +23,8 @@ nunjucks.configure(templatePath,{
     tags:{
         blockStart:'{%',
         blockEnd:'%}',
-        variableStart:'{{',
-        variableEnd:'}}',
+        variableStart:'{#',
+        variableEnd:'#}',
         commentStart:'{#',
         commentEnd:'#}'
     }
@@ -37,6 +38,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret:"kitty-catty",
+    resave:false,
+    saveUninitialized:false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 exroute.init(app,{
