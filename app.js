@@ -7,6 +7,7 @@ var nunjucks = require('nunjucks');
 var consolidate = require("consolidate");
 var path = require('canonical-path');
 var exroute = require('exroute');
+var passport = require('./lib/passport');
 
 var app = express();
 // view engine setup
@@ -36,6 +37,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
 exroute.init(app,{
     routesDirectory:'./routes/*.js'
 });
