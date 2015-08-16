@@ -1,5 +1,4 @@
 var express = require('express');
-var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -7,12 +6,9 @@ var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 var consolidate = require("consolidate");
 var path = require('canonical-path');
-var routes = require('./routes/index');
-var users = require('./routes/users');
 var exroute = require('exroute');
 
 var app = express();
-
 // view engine setup
 var templatePath = path.join(__dirname, 'views');
 app.engine('html', consolidate.nunjucks);
